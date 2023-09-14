@@ -1,9 +1,14 @@
 import java.util.concurrent.atomic.AtomicReference
 
 class MSQueue<E> : Queue<E> {
-    private val dummyNode = Node<E>(null)
-    private val head: AtomicReference<Node<E>> = AtomicReference(dummyNode)
-    private val tail: AtomicReference<Node<E>> = AtomicReference(dummyNode)
+    private val head: AtomicReference<Node<E>>
+    private val tail: AtomicReference<Node<E>>
+
+    init {
+        val dummyNode = Node<E>(null)
+        head = AtomicReference(dummyNode)
+        tail = AtomicReference(dummyNode)
+    }
 
     override fun enqueue(element: E) {
         val newNode = Node(element)
